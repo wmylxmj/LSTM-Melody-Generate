@@ -168,7 +168,8 @@ class SequenceParser(object):
     '''Sequence Parser'''
     
     def __init__(self, name=None):
-        self.durations = [1/2, 3/8, 1/4, 3/16, 1/8, 1/16, 1/32]
+        # 64, 48, 32, 28, 24, 20, 16, 14, 12, 10, 8, 6, 4, 2 
+        self.durations = [1, 3/4, 1/2, 7/16, 3/8, 5/16, 1/4, 7/32, 3/16, 5/32, 1/8, 3/32, 1/16, 1/32]
         self.name = name
         pass
     
