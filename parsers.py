@@ -268,24 +268,56 @@ class SequenceParser(object):
     def get_monosyllabic_melody(self, melody_sequence):
         sequence = np.array(melody_sequence)
         span = sequence.shape[-1]
+        notes = self.get_notes(sequence)
+        notes = self.sort_notes(notes, mode=1, reverse=False)
         monosyllabic_melody = []
-        for i in range(sequence.shape[0]):
-            state = sequence[i]
-            # rest
-            if np.sum(state) == 0:
-                melody_state = [0 for x in range(span)]
-                monosyllabic_melody.append(melody_state)
+        notes_selected = notes[:]
+        while len(notes) > 1:
+            note = notes[0]
+            notes_remove = []
+            for n in notes[1:]:
+                if note[1] == n[1]:
+                    if note[0] > n[0]:
+                        notes_remove.append(n)
+                        pass
+                    else:
+                        notes_remove.append(note)
+                        pass
+                    pass
+                else:
+                    break
                 pass
-            else:
-                # select the highest pitch
-                for pitch in range(span-1, -1, -1):                        
-                    if state[pitch] == 1:
-                        melody_state = [0 for x in range(span)]
-                        melody_state[pitch] = 1
-                        monosyllabic_melody.append(melody_state)              
-                        break
+            for remove in notes_remove:
+                try:
+                    notes_selected.remove(remove)
+                    pass
+                except:
                     pass
                 pass
+            notes.remove(note)
+            pass
+        notes_selected = self.sort_notes(notes_selected, mode=1, reverse=False)
+        for i in range(len(notes_selected)-1):
+            note = notes_selected[i]
+            note_next = notes_selected[i+1]
+            state = [0 for x in range(span)]
+            state[note[0]] = 1
+            for j in range(note[1], min(note[-1], note_next[1])):
+                monosyllabic_melody.append(state)
+                pass
+            # rest
+            if note[-1] < note_next[1]:
+                state = [0 for x in range(span)]
+                for j in range(note_next[1]-note[-1]):
+                    monosyllabic_melody.append(state)
+                    pass
+                pass
+            pass
+        note = notes_selected[-1]
+        state = [0 for x in range(span)]
+        state[note[0]] = 1
+        for j in range(note[1], note[-1]):
+            monosyllabic_melody.append(state)
             pass
         monosyllabic_melody = np.array(monosyllabic_melody)
         return monosyllabic_melody
