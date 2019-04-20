@@ -1,2 +1,2 @@
-# LSTM-Midi-Generate
-LSTM MIDI 音乐生成 2019-4-16
+# LSTM-Melody-Generate
+LSTM 旋律生成 2019-4-16
