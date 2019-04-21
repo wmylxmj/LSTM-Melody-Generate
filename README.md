@@ -28,3 +28,5 @@ LSTM 旋律生成 2019-4-16
 - 运行train.py
 ### 预测
 - 运行predict.py
+### Demo
+![](./images/music.png)
