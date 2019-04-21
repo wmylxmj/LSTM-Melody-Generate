@@ -29,7 +29,7 @@ from model import MidiGenerateModel
 
 # load dataset 
 data_loader = DataLoader()
-X, Y = data_loader.load_dataset('./datasets/midi', Tx=64, sample_interval=4)
+X, Y = data_loader.load_dataset('./datasets/midi', Tx=32, sample_interval=4)
 m, Tx, n_values = X.shape
 Y = Y.reshape((Tx, m, n_values))
 print('[OK] dataset loaded, find {} samples.'.format(m))
