@@ -1,5 +1,7 @@
 # LSTM-Melody-Generate
 LSTM 旋律生成 2019-4-16
+### 调用的解析midi的库
+- python-midi
 ### Midi采样
 - import parsers
 - parser = parsers.MidiParser()
