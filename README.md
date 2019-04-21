@@ -23,3 +23,7 @@ LSTM 旋律生成 2019-4-16
 - matrix = parser.monosyllabic_melody_to_matrix(melody)
 ### LSTM
 ![](./images/LSTM.png)
+### 训练
+- 运行train.py
+### 预测
+- 运行predict.py
